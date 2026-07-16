@@ -187,8 +187,8 @@ composer.addPass(new OutputPass())
 // ============================================================
 function resize() {
   const rect = container.getBoundingClientRect()
-  const w = rect.width
-  const h = rect.height
+  const w = Math.max(1, rect.width)
+  const h = Math.max(1, rect.height)
   camera.aspect = w / h
   camera.updateProjectionMatrix()
   renderer.setSize(w, h, false)
@@ -196,7 +196,12 @@ function resize() {
   dotPass.uniforms.uResolution.value.set(w, h)
 }
 window.addEventListener('resize', resize)
-resize()
+// Delay initial resize to ensure layout is computed
+requestAnimationFrame(() => requestAnimationFrame(resize))
+// Also use ResizeObserver for robust sizing
+if (typeof ResizeObserver !== 'undefined') {
+  new ResizeObserver(resize).observe(container)
+}
 
 // ============================================================
 // Animation loop
@@ -253,9 +258,7 @@ function animate() {
     if (disperseStarted) {
       disperseStarted = false
       pointsMaterial.opacity = OPACITY_MAX
-      // Reset to source positions
-      positions.set(sourcePositions)
-      points.geometry.attributes.position.needsUpdate = true
+      // Don't teleport - let spring physics pull particles back to source positions
     }
     points.position.y = Math.sin(t * 0.8) * 0.12
 
