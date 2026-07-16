@@ -13,7 +13,7 @@ import { dotMatrixShader } from './dotMatrixShader.js'
 // 常量
 // ============================================================
 const MODEL_URL = './koala-peace-v2.glb'
-const DRACO_URL = 'https://www.gstatic.com/draco/versioned/decoders/1.5.7/'
+const DRACO_URL = './vendor/draco/'
 const PARTICLE_COUNT = 14000
 const SCALE = 2.5
 const MOUSE_RADIUS = 0.85
