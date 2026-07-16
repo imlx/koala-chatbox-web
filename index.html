@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Koala Chatbox</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div class="page">
+      <div id="mesh-bg">
+        <div class="mesh-fallback"></div>
+        <div class="mesh-glow"></div>
+        <div class="mesh-grain"></div>
+      </div>
+      <div class="hero-fade"></div>
+      <div class="hero-fade-top"></div>
+      <div class="hero-screen-wrap">
+        <div class="hero-screen-stage">
+          <div class="mac-screen-frame">
+            <div class="mac-screen-inner">
+              <div class="mac-screen-vignette" aria-hidden="true"></div>
+              <div class="canvas-container" id="canvas-container"></div>
+              <div class="hero-chat" id="hero-chat" aria-live="polite">
+                <div class="hero-chat-bar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 256 256" style="color: var(--brand); filter: drop-shadow(0 0 6px rgba(159,215,255,0.45)); flex-shrink: 0;">
+                    <path d="M208,144a15.78,15.78,0,0,1-10.42,14.94L146,178l-19,51.62a15.92,15.92,0,0,1-29.88,0L78,178l-51.62-19a15.92,15.92,0,0,1,0-29.88L78,110l19-51.62a15.92,15.92,0,0,1,29.88,0L146,110l51.62,19A15.78,15.78,0,0,1,208,144ZM152,48h16V64a8,8,0,0,0,16,0V48h16a8,8,0,0,0,0-16H184V16a8,8,0,0,0-16,0V32H152a8,8,0,0,0,0,16Zm88,32h-8V72a8,8,0,0,0-16,0v8h-8a8,8,0,0,0,0,16h8v8a8,8,0,0,0,16,0V96h8a8,8,0,0,0,0-16Z" />
+                  </svg>
+                  <span class="hero-chat-title">cua ask me anything</span>
+                  <button type="button" class="hero-chat-reset" id="reset-btn" aria-label="Reset" title="Reset">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M224,128a96,96,0,0,1-94.71,96H128A95.38,95.38,0,0,1,62.1,197a8,8,0,0,1,11-11.81A78.84,78.84,0,0,0,128,208a80,80,0,1,0-77.7-99.06l23.59-7.63a4,4,0,0,1,5,5.16L64.73,142.07a4,4,0,0,1-6.72,1.38L28.51,113.84a4,4,0,0,1,1.86-6.62l21.93-7.1A96,96,0,0,1,224,128Z" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="hero-chat-scroll" id="chat-scroll"></div>
+                <form class="hero-chat-input" id="chat-form">
+                  <span class="hero-chat-input-prompt">/ask</span>
+                  <input aria-label="Ask Cua" id="chat-input" placeholder="ask about evals, warm pools, verified data..." />
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="hero-screen-ask" id="hero-screen-ask">
+            <form class="hero-ask-form" id="ask-form">
+              <span class="hero-ask-prompt">/ask</span>
+              <input aria-label="Ask Cua" id="ask-input" value="how do I run evals at scale?" placeholder="ask about evals, warm pools, verified data..." />
+            </form>
+            <div class="hero-ask-suggestions" id="ask-suggestions"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
