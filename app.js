@@ -47,6 +47,7 @@ const container = document.getElementById('canvas-container')
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
 camera.position.set(0, 1.5, 6)
+camera.lookAt(0, 0, 0)
 
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, premultipliedAlpha: false })
 renderer.setClearColor(0, 0)
